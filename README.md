@@ -62,7 +62,7 @@ no need to configure `.env`.
 
 For more information about this approach, see https://symfonycasts.com/screencast/symfony5-doctrine
 
-**3 Alternative) Database Setup (without Docker)**
+**3) Alternative Database Setup (without Docker)**
 
 If you do not want to use Docker, you can also just install and run
 MySQL manually. When you're done, open the `.env` file and make any
@@ -70,7 +70,7 @@ adjustments you need - specifically `DATABASE_URL`. Or, better,
 you can create a `.env.local` file and *override* any configuration
 you need there (instead of changing `.env` directly).
 
-** 4) Database Schema**
+**4) Database Schema**
 
 To actually *create* the database and get some tables, run:
 
