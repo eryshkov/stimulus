@@ -48,6 +48,12 @@
                                             colorId: item.color ? item.color.id: null,
                                         }) }}"
                                         method="POST"
+                                        {{ stimulus_controller('submit-confirm', {
+                                            title: 'Remove this item',
+                                            icon: 'warning',
+                                            submitAsync: true,
+                                        }) }}
+                                        data-action="submit-confirm#onSubmit"
                                     >
                                         <input type="hidden" name="_token" value="{{ csrf_token('remove_item') }}" />
 
