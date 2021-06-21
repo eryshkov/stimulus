@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,13 +40,22 @@ class ProductAdminController extends AbstractController
             $entityManager->persist($product);
             $entityManager->flush();
 
+            if ($request->isXmlHttpRequest()) {
+                return new Response(null, 204);
+            }
+
             return $this->redirectToRoute('product_admin_index');
         }
 
-        return $this->render('product_admin/new.html.twig', [
+        $template = $request->isXmlHttpRequest() ? '_form.html.twig' : 'new.html.twig';
+
+        return $this->render('product_admin/' . $template, [
             'product' => $product,
             'form' => $form->createView(),
-        ]);
+        ], new Response(
+            null,
+            $form->isSubmitted() ? 422 : 200,
+        ));
     }
 
     /**
