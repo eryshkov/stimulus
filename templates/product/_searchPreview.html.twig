@@ -1,6 +1,6 @@
 <div class="list-group">
     {% for product in products %}
-        <a class="list-group-item list-group-item-action"
+        <a class="list-group-item list-group-item-action" role="option"
            href="{{ path('app_product', {id: product.id}) }}">
             <div class="d-flex align-items-center justify-content-between">
                 <div>
@@ -13,6 +13,6 @@
             </div>
         </a>
     {% else %}
-        <div class="list-group-item">No results found!</div>
+        <div class="list-group-item" role="option" aria-disabled="true">No results found!</div>
     {% endfor %}
 </div>

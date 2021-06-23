@@ -26,20 +26,27 @@
                     </div>
                     <div class="col-9">
                         <form autocomplete="off">
-                            <div {{ stimulus_controller('search-preview', {
-                                url: path('app_homepage')
-                            })}} class="input-group">
+                            <div
+                                {{ stimulus_controller({
+                                'autocomplete': {
+                                    url: path('app_homepage', {preview: 1}),
+                                    skipHiddenProperty: true
+                                },
+                                'autocomplete-transition': {}
+                                }) }} class="input-group"
+                                      data-action="toggle->autocomplete-transition#toggle">
                                 <input
                                     name="q"
                                     value="{{ searchTerm }}"
                                     placeholder="Search products..."
                                     type="search"
                                     class="form-control"
-                                    data-action="search-preview#onSearchInput"
+                                    data-autocomplete-target="input"
                                 >
 
                                 <div class="search-preview"
-                                     data-search-preview-target="result">
+                                     data-autocomplete-target="results"
+                                     data-autocomplete-transition-target="results">
                                 </div>
                             </div>
                         </form>
